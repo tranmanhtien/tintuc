@@ -13,6 +13,14 @@ class CreateAuthors extends AbstractMigration
     public function change()
     {
         $table = $this->table('authors');
+        $table->addColumn('name','string',[
+            'default' => null,
+            'null' => false
+        ]);
+        $table->addColumn('address','string',[
+            'default' => null,
+            'null'=> false
+        ]);
         $table->create();
     }
 }

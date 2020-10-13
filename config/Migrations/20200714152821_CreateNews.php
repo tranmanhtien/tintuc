@@ -13,6 +13,24 @@ class CreateNews extends AbstractMigration
     public function change()
     {
         $table = $this->table('news');
+        $table->addColumn('title','string',[
+            'default' => null,
+            'null' => false]);
+        $table->addColumn('description','string',[
+            'default' => null,
+            'null' => false]);
+        $table->addColumn('tag','string',[
+            'default' => null,
+            'null' => false]);
+        $table->addColumn('image','string',[
+            'default' => null,
+            'null' => false]);
+        $table->addColumn('status','string',[
+            'default' => null,
+            'null' => false]);
+        $table->addColumn('hot','string',[
+            'default' => null,
+            'null' => false]);
         $table->create();
     }
 }

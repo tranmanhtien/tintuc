@@ -90,6 +90,14 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class);
 });
+Router::prefix('admin', function (RouteBuilder $routes) {
+    // Because you are in the admin scope,
+    // you do not need to include the /admin prefix
+    // or the admin route element.
+    $routes->connect('/', ['controller' => 'HomeAdmin', 'action' => 'index']);
+    $routes->connect('/category', ['controller' => 'Categorys', 'action' => 'index']);
+
+});
 
 /**
  * If you need a different set of middleware or none at all,
