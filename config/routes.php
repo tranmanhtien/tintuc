@@ -95,7 +95,38 @@ Router::prefix('admin', function (RouteBuilder $routes) {
     // you do not need to include the /admin prefix
     // or the admin route element.
     $routes->connect('/', ['controller' => 'HomeAdmin', 'action' => 'index']);
-    $routes->connect('/category', ['controller' => 'Categorys', 'action' => 'index']);
+
+    // Categories
+    $routes->connect('/category', ['controller' => 'Categories', 'action' => 'index']);
+    $routes->connect('/category/add', ['controller' => 'Categories', 'action' => 'add']);
+    $routes->connect('/category/edit/:id', ['controller' => 'Categories', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/category/delete/:id', ['controller' => 'Categories', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
+
+    // Newstype
+    $routes->connect('/newtype', ['controller' => 'NewsType', 'action' => 'index']);
+    $routes->connect('/newtype/add', ['controller' => 'NewsType', 'action' => 'add']);
+    $routes->connect('/newtype/edit/:id', ['controller' => 'NewsType', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/newtype/delete/:id', ['controller' => 'NewsType', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
+
+    // Authors
+    $routes->connect('/author', ['controller' => 'Authors', 'action' => 'index']);
+    $routes->connect('/author/add', ['controller' => 'Authors', 'action' => 'add']);
+    $routes->connect('/author/edit/:id', ['controller' => 'Authors', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/author/delete/:id', ['controller' => 'Authors', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
+
+    // Tags
+    $routes->connect('/tag', ['controller' => 'Tags', 'action' => 'index']);
+    $routes->connect('/tag/add', ['controller' => 'Tags', 'action' => 'add']);
+    $routes->connect('/tag/edit/:id', ['controller' => 'Tags', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/tag/delete/:id', ['controller' => 'Tags', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
+
+
+    // News
+    $routes->connect('/new', ['controller' => 'News', 'action' => 'index']);
+    $routes->connect('/new/add', ['controller' => 'News', 'action' => 'add']);
+    $routes->connect('/new/edit/:id', ['controller' => 'News', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/new/delete/:id', ['controller' => 'News', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
+
 
 });
 

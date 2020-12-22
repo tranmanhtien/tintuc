@@ -14,6 +14,8 @@ class HomeAdminController extends AppController
         parent::initialize();
 
         $this->viewBuilder()->setLayout('admin');
+        $this->loadComponent('Flash');
+        $this->loadComponent('Paginator');
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -21,6 +23,9 @@ class HomeAdminController extends AppController
          */
         //$this->loadComponent('Security');
     }
+    public $paginate = [
+        'limit' => 5
+    ];
     public function index(){
     }
 }

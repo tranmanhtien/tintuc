@@ -14,21 +14,23 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Quản lý tin tức';
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <?= $this->Html->charset() ?>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?= $cakeDescription ?>
     </title>
+    <!-- <?= $this->fetch('title') ?> -->
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('admin/sb-admin-2.min.css') ?>
+    <?= $this->Html->css('admin/style.css') ?>
     <?= $this->Html->css('admin/dataTables.bootstrap4.min.css') ?>
     <?= $this->Html->css('fontawesome-free/css/all.min.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -41,6 +43,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->script('jquery.easing.min.js') ?>
     <?= $this->Html->script('sb-admin-2.min.js') ?>
     <?= $this->Html->script('dataTables.bootstrap4.min.js') ?>
+    <?= $this->Html->script('ckeditor/ckeditor.js',['charset' => 'utf-8']) ?>
    
 </head>
 
@@ -247,10 +250,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-          </div>
+          </div> -->
           <?= $this->fetch('content') ?>
         </div>
         <!-- /.container-fluid -->
