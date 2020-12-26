@@ -36,12 +36,12 @@
               <td><?= $row->news_type['name'] ?></td>
               <td><img src="/<?= $row->cover_image?>"></td>
               <td><?= $row->tag['name'] ?></td>
-              <td><a href="<?= $this->Url->build('admin/category/edit/' . $row->id) ?>" class="btn btn-warning mr-2">SỬA</a>
+              <td><a href="<?= $this->Url->build('admin/new/edit/' . $row->id) ?>" class="btn btn-warning mr-2">SỬA</a>
                 <?= $this->Form->postLink(
                   'XÓA',
                   ['action' => 'delete', $row->id],
                   [
-                    'confirm' => 'Bạn có chắc chắn muốn xóa thể loại: ' .$row->name,
+                    'confirm' => 'Bạn có chắc chắn muốn xóa tin có mã id là: ' . $row->id,
                     'class' => 'btn btn-danger mr-2'
                   ]
                 )

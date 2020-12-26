@@ -50,7 +50,7 @@ class CategoriesController extends HomeAdminController
     }
     public function delete($id = null){
         $category = $this->Categories->get($id);
-        if ($this->Authors->delete($category)) {
+        if ($this->Categories->delete($category)) {
             $this->Flash->success(__('Thế loại có mã id: {0} đã bị xóa thành công .', h($id)));
             return $this->redirect(['action' => 'index']);
         }else{

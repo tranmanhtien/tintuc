@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Controller\Admin\HomeAdminController;
 use App\Model\Entity\Author;
 use Cake\Database\Type\UuidType;
-
+use Cake\Filesystem\File;
 /**
  * @property \App\Model\Table\Author $Author
  * @property \App\Model\Table\Category $Categories
@@ -83,12 +83,12 @@ class NewsController extends HomeAdminController
                 $this->Flash->error(__('Các trường chưa nhập đủ!'));
             }
         }
-        $this->set(['new','arrAth','arrCate','arrNewType']);
-        // $this->set('new',$new);
-        // $this->set('arrAth',$arrAth);
-        // $this->set('arrCate',$arrCate);
-        // $this->set('arrNewType',$arrNewType);
-        // $this->set('arrTag',$arrTag);
+        // $this->set(['new','arrAth','arrCate','arrNewType']);
+        $this->set('new',$new);
+        $this->set('arrAth',$arrAth);
+        $this->set('arrCate',$arrCate);
+        $this->set('arrNewType',$arrNewType);
+        $this->set('arrTag',$arrTag);
     }
     
     public function edit($id){
@@ -148,6 +148,23 @@ class NewsController extends HomeAdminController
         $this->set('arrCate',$arrCate);
         $this->set('arrNewType',$arrNewType);
         $this->set('arrTag',$arrTag);
+    }
+
+    public function delete($id){
+        $new = $this->News->get($id);
+        $f =  $new['cover_image'];
+        $file = new File(WWW_ROOT .$f,false, 0777);
+        if($this->News->delete($new)){
+            if(file_exists($f)){
+                $file->delete();
+            }else{
+            }
+            $this->Flash->success(__('Tin có mã id: {0} đã bị xóa thành công .', h($id)));
+            return $this->redirect(['action' => 'index']);
+        }
+        else{
+            $this->Flash->success(__('Xóa không thành công !'));
+        }
     }
 
 }

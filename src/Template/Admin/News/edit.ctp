@@ -40,8 +40,10 @@ use Cake\Form\Form;
         <?=$this->Form->file('cover_image',['id' => 'filePhoto'])?>
       </div>
       <div class="form-group">
-        <img id="previewHolder" name="cover_image" src="#" alt="" style="max-width:300px;max-height:300px">
-        <button id="btn-del-img" style="display:none">Xóa</button>
+        <img id="previewHolder" name="cover_image" src="/<?= $new->cover_image?>" alt="" style="max-width:300px;max-height:300px">
+        <?php if($new->cover_image != null):?>
+        <button id="btn-del-img" >Xóa</button>
+        <?php endif;?>
       </div>
       <div class="form-group ">
         <div class="form-check form-check-inline">
@@ -54,7 +56,7 @@ use Cake\Form\Form;
           ]);?>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Thêm</button> <a class="btn btn-success" href="<?= $this->Url->build('admin/new')?>">Quay về</a>
+      <button type="submit" class="btn btn-primary">Sửa</button> <a class="btn btn-success" href="<?= $this->Url->build('admin/new')?>">Quay về</a>
       <?= $this->Flash->render() ?>
     <?= $this->Form->end()?>
   </div>
