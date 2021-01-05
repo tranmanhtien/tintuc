@@ -29,12 +29,30 @@
           <?php foreach ($news as $row) { ?>
             
             <tr>
-              <td><?= $row->tittle ?></td>
+              <td>
+                <?= $this->Text->truncate(
+                  $row->tittle,
+                  22,
+                  [
+                      'ellipsis' => '...',
+                      'exact' => false
+                  ])
+                ?>
+              </td>
               <td><?= $row->author['name'] ?></td>
-              <td><?= $row->description ?></td>
+              <td>
+                <?= $this->Text->truncate(
+                  $row->description,
+                  22,
+                  [
+                      'ellipsis' => '...',
+                      'exact' => false
+                  ])
+                ?>
+              </td>
               <td><?= $row->news_type['category']['name'] ?></td>
               <td><?= $row->news_type['name'] ?></td>
-              <td><img src="/<?= $row->cover_image?>"></td>
+              <td><img style="width:300px;height:200px" src="/<?= $row->cover_image?>"></td>
               <td><?= $row->tag['name'] ?></td>
               <td><a href="<?= $this->Url->build('admin/new/edit/' . $row->id) ?>" class="btn btn-warning mr-2">SỬA</a>
                 <?= $this->Form->postLink(

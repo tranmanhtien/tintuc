@@ -50,11 +50,19 @@ class CategoriesController extends HomeAdminController
     }
     public function delete($id = null){
         $category = $this->Categories->get($id);
-        if ($this->Categories->delete($category)) {
-            $this->Flash->success(__('Thế loại có mã id: {0} đã bị xóa thành công .', h($id)));
+        if($this->Categories->hasNewsType($id)){
+            //display error message that you cannot delete because venue has events
+            $this->Flash->success(__('Tồn tại loại tin trong thẻ loại này không thể xóa thể loại này được !'));
             return $this->redirect(['action' => 'index']);
-        }else{
-            $this->Flash->success(__('Xóa không thành công !'));
+            
+        } else {
+            if ($this->Categories->delete($category)) {
+                $this->Flash->success(__('Thế loại có mã id: {0} đã bị xóa thành công .', h($id)));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->success(__('Xóa không thành công !'));
+            }
         }
+        
     }
 }

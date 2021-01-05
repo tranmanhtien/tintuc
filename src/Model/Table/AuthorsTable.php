@@ -62,4 +62,13 @@ class AuthorsTable extends Table
 
         return $validator;
     }
+    function AuthorhasNews($id){
+        $check = $this->News->find()->where(["author_id" => $id])->toArray();
+        $count = count($check);
+        if ($count == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

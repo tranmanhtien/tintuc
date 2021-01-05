@@ -2,7 +2,6 @@
     /**
      * @var App\View\AppView $this
      */
-use App\Model\Entity\Author;
 use Cake\Form\Form;
 ?>
 <div class="card shadow mb-4">

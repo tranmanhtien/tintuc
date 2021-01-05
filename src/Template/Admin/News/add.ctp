@@ -2,7 +2,6 @@
     /**
      * @var App\View\AppView $this
      */
-use App\Model\Entity\Tag;
 use Cake\Form\Form;
 ?>
 <div class="card shadow mb-4">
@@ -17,11 +16,11 @@ use Cake\Form\Form;
       </div>
       <div class="form-group">
         <?= $this->Form->label('Thể loại');?>
-        <?= $this->Form->select('category_id',$arrCate, ['class' => 'form-control']);?>
+        <?= $this->Form->select('category_id',$arrCate, ['class' => 'form-control','id' => 'category']);?>
       </div>
       <div class="form-group">
         <?= $this->Form->label('Loại tin');?>
-        <?= $this->Form->select('newstype_id',$arrNewType, ['class' => 'form-control']);?>
+        <?= $this->Form->select('newstype_id',$arrNewType, ['class' => 'form-control','id' => 'newtype']);?>
       </div>
       <div class="form-group">
         <?= $this->Form->label('Thẻ nhãn');?>
@@ -84,5 +83,7 @@ use Cake\Form\Form;
           $('#filePhoto').val('');
           $(this).hide();
         });
+       
     });
+    
 </script>

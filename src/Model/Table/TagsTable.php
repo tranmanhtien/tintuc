@@ -59,4 +59,13 @@ class TagsTable extends Table
 
         return $validator;
     }
+    function TaghasNews($id){
+        $check = $this->News->find()->where(["tag_id" => $id])->toArray();
+        $count = count($check);
+        if ($count == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

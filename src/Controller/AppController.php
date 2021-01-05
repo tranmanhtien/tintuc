@@ -45,11 +45,14 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
-
         /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
+    }
+    protected function responseJson($data = []) {
+        $this->response = $this->response->withHeader('Content-type', 'application/json')->withStringBody(json_encode($data));
+        return $this->response;
     }
 }

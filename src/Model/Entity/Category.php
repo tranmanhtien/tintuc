@@ -29,4 +29,5 @@ class Category extends Entity
         'created' => true,
         'modified' => true,
     ];
+    
 }

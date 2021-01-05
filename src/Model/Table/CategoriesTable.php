@@ -65,4 +65,13 @@ class CategoriesTable extends Table
 
         return $validator;
     }
+    function hasNewsType($id){
+        $check = $this->NewsType->find()->where(["category_id" => $id])->toArray();
+        $count = count($check);
+        if ($count == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

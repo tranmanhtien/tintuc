@@ -94,7 +94,10 @@ Router::prefix('page', function (RouteBuilder $routes) {
     // you do not need to include the /admin prefix
     // or the admin route element.
     $routes->connect('/', ['controller' => 'Homes', 'action' => 'index']);
-
+    $routes->connect('/new/detail/:id', ['controller' => 'Homes', 'action' => 'detail'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/new/newtype/:id', ['controller' => 'Homes', 'action' => 'newtype'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/new/newtag/:id', ['controller' => 'Homes', 'action' => 'newtag'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/new/newcategory/:id', ['controller' => 'Homes', 'action' => 'newcategory'],['id' => '\d+', 'pass' => ['id']]);
     // Categories
     // $routes->connect('/category', ['controller' => 'Categories', 'action' => 'index']);
  
@@ -137,6 +140,9 @@ Router::prefix('admin', function (RouteBuilder $routes) {
     $routes->connect('/new/add', ['controller' => 'News', 'action' => 'add']);
     $routes->connect('/new/edit/:id', ['controller' => 'News', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/new/delete/:id', ['controller' => 'News', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
+
+    // AJAX
+    // $routes->connect('/loadnewtype/:id', ['controller' => 'Ajax', 'action' => 'loadnewtype'],['id' => '\d+', 'pass' => ['id']]);
 
 
 });

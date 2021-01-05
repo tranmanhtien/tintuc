@@ -87,4 +87,14 @@ class NewsTypeTable extends Table
 
         return $rules;
     }
+
+    function hasNews($id){
+        $check = $this->News->find()->where(["newstype_id" => $id])->toArray();
+        $count = count($check);
+        if ($count == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -167,4 +167,15 @@ class NewsController extends HomeAdminController
         }
     }
 
+    public function loadNewtype($id){
+        // if (!$this->request->is(['ajax'])) {
+        //     return $this->responseJson(['status' => false]);
+        // }
+        $newtype = $this->NewsType->find()->where(['category_id' => $id]);
+        foreach($newtype as $row){
+            echo "<option value='". $row->id ."'>". $row->name ."</option>";
+        }
+        // return $this->responseJson(['status' => true, 'html' => $html]);
+    }
+
 }
