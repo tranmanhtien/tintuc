@@ -29,6 +29,10 @@ class CreateUsers extends AbstractMigration
             'default' => null,
             'null' => true
         ]);
+        $table->addColumn('role','integer',[
+            'default' => null,
+            'null' => false
+        ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
             'null' => false,

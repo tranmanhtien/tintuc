@@ -55,4 +55,5 @@ class AppController extends Controller
         $this->response = $this->response->withHeader('Content-type', 'application/json')->withStringBody(json_encode($data));
         return $this->response;
     }
+    
 }

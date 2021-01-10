@@ -77,7 +77,13 @@ class UsersTable extends Table
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
-
+        $validator
+            ->sameAs('re_pass','password','Mật khẩu không trùng'); 
+        $validator
+            ->integer('role')
+            ->requirePresence('role', 'create')
+            ->notEmptyString('role');
+       
         return $validator;
     }
 
@@ -95,4 +101,14 @@ class UsersTable extends Table
 
         return $rules;
     }
+    // public function validatePasswords($validator)
+    // {
+    //     $validator->add('password', 'no-misspelling', [
+    //         'rule' => ['compareWith', 're_pass'],
+    //         'message' => 'Mật khẩu không trùng',
+    //     ]);
+
+    //     // ...
+    //     return $validator;
+    // }
 }

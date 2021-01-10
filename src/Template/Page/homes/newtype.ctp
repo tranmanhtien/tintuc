@@ -13,7 +13,7 @@
                         <div class="col-12">
                             <div class="section-heading">
                                 <h2><?= $nametype->name?></h2>
-                                <p>Thể loại: <?= $nametype->name?></p>
+                                <p>Loại tin: <?= $nametype->name?></p>
                             </div>
                         </div>
 
@@ -50,7 +50,6 @@
 
                 <!-- Pager -->
                 <ol class="nikki-pager">
-                    <?= $this->Paginator->prev(' << ')?>
                     <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Mới hơn</a></li>
                     <li><a href="#">Cũ hơn <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                 </ol>
@@ -72,11 +71,11 @@
                     <div class="single-widget-area mb-30">
                         <!-- Title -->
                         <div class="widget-title">
-                            <h6>Loại tin</h6>
+                            <h6>Thể loại</h6>
                         </div>
                         <ol class="nikki-catagories">
                             <?php foreach($namecate as $row){?>
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?= $row->name?></span> <span>(3)</span></a></li>
+                                <li><a href="<?= $this->Url->build(['controller' => 'Homes', 'action' => 'newcategory',$row->categories['id']])?>"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?= $row->categories['name']?></span> <span>(<?= $row->count?>)</span></a></li>
                             <?php }?>
                         </ol>
                     </div>
@@ -113,7 +112,7 @@
                         <!-- Tags -->
                         <ol class="popular-tags d-flex flex-wrap">
                             <?php foreach($tags as $tag){?>
-                                <li><a href="#"><?= $tag->name?></a></li>
+                                <li><a href="<?= $this->Url->build(['controller' => 'Homes', 'action' => 'newtag',$tag->id])?>"><?= $tag->name?></a></li>
                             <?php }?>
                         </ol>
                     </div>

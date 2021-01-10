@@ -62,7 +62,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'index']);
+    $routes->connect('/', ['controller' => 'Homes', 'action' => 'display', 'index']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -89,7 +89,23 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class);
 });
+
 Router::prefix('page', function (RouteBuilder $routes) {
+    // Register scoped middleware for in scopes.
+    $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
+        'httpOnly' => true
+    ]));
+    $routes->connect('/', ['controller' => 'Homes', 'action' => 'index']);
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/register', ['controller' => 'Users', 'action' => 'register']);
+    $routes->connect('/profile/:id', ['controller' => 'Users', 'action' => 'profile'],['id' => '\d+', 'pass' => ['id']]);
+
+    /**
+     * Apply a middleware to the current route scope.
+     * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
+     */
+    $routes->applyMiddleware('csrf');
     // Because you are in the admin scope,
     // you do not need to include the /admin prefix
     // or the admin route element.
@@ -98,8 +114,9 @@ Router::prefix('page', function (RouteBuilder $routes) {
     $routes->connect('/new/newtype/:id', ['controller' => 'Homes', 'action' => 'newtype'],['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/new/newtag/:id', ['controller' => 'Homes', 'action' => 'newtag'],['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/new/newcategory/:id', ['controller' => 'Homes', 'action' => 'newcategory'],['id' => '\d+', 'pass' => ['id']]);
-    // Categories
-    // $routes->connect('/category', ['controller' => 'Categories', 'action' => 'index']);
+    $routes->connect('/aboutus', ['controller' => 'Homes', 'action' => 'about']);
+    $routes->connect('/contact', ['controller' => 'Homes', 'action' => 'contact']);
+    $routes->connect('/search', ['controller' => 'Homes', 'action' => 'searchnew']);
  
 
 
@@ -109,6 +126,9 @@ Router::prefix('admin', function (RouteBuilder $routes) {
     // you do not need to include the /admin prefix
     // or the admin route element.
     $routes->connect('/', ['controller' => 'HomeAdmin', 'action' => 'index']);
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/register', ['controller' => 'Users', 'action' => 'register']);
 
     // Categories
     $routes->connect('/category', ['controller' => 'Categories', 'action' => 'index']);
@@ -141,6 +161,11 @@ Router::prefix('admin', function (RouteBuilder $routes) {
     $routes->connect('/new/edit/:id', ['controller' => 'News', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/new/delete/:id', ['controller' => 'News', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
 
+    // Users
+    $routes->connect('/user', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/user/add', ['controller' => 'Users', 'action' => 'add']);
+    $routes->connect('/user/edit/:id', ['controller' => 'Users', 'action' => 'edit'],['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/user/delete/:id', ['controller' => 'Users', 'action' => 'delete'],['id' => '\d+', 'pass' => ['id']]);
     // AJAX
     // $routes->connect('/loadnewtype/:id', ['controller' => 'Ajax', 'action' => 'loadnewtype'],['id' => '\d+', 'pass' => ['id']]);
 

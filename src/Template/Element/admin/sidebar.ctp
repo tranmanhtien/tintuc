@@ -51,6 +51,13 @@
         </a>
         
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="<?php echo $this->Url->build('admin/user')?>">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Tài khoản</span>
+        </a>
+        
+      </li>
       
 
       <!-- Divider -->
