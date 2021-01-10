@@ -101,6 +101,7 @@ Router::prefix('page', function (RouteBuilder $routes) {
     $routes->connect('/register', ['controller' => 'Users', 'action' => 'register']);
     $routes->connect('/profile/:id', ['controller' => 'Users', 'action' => 'profile'],['id' => '\d+', 'pass' => ['id']]);
 
+    
     /**
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
