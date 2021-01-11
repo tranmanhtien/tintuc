@@ -11,7 +11,6 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property string $name
  * @property string $email
  * @property string $password
- * @property int|null $comment_id
  * @property int $role
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
@@ -33,7 +32,6 @@ class User extends Entity
         'name' => true,
         'email' => true,
         'password' => true,
-        'comment_id' => true,
         'role' => true,
         'created' => true,
         'modified' => true,

@@ -1,4 +1,7 @@
-<?php $breadcrum = 'Liên hệ';?>
+<?php 
+    $this->set('Tittlepage', 'Liên hệ');
+    $breadcrum = 'Liên hệ';
+?>
 <?= $this->element('page/breadcrumb',['breadcrum' => $breadcrum]) ?>
 <!-- ##### Google Maps Start ##### -->
 <div class="map-area">

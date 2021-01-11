@@ -1,4 +1,7 @@
-<?php $breadcrum = 'Thể loại';?>
+<?php 
+    $this->set('Tittlepage', 'Thể loại');
+    $breadcrum = 'Thể loại';
+?>
 <?= $this->element('page/breadcrumb',['breadcrum' => $breadcrum]) ?>
 <!-- ##### Blog Content Area Start ##### -->
 <section class="blog-content-area section-padding-0-100">

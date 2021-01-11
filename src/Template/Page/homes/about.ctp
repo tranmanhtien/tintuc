@@ -1,4 +1,6 @@
-<?php $breadcrum = 'Về chúng tôi';?>
+<?php 
+    $this->set('Tittlepage', 'Giới thiệu');
+    $breadcrum = 'Về chúng tôi';?>
 <?= $this->element('page/breadcrumb',['breadcrum' => $breadcrum]) ?>
 <div class="about-us-area section-padding-0-100">
     <div class="container">

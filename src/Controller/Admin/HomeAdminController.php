@@ -29,7 +29,8 @@ class HomeAdminController extends AppController
                 'Form'=>[
                     'fields' => [
                             'username' => 'email',
-                            'password' => 'password'
+                            'password' => 'password',
+                            'role' => 1
                         ]
                     ]
                 ],
@@ -51,6 +52,11 @@ class HomeAdminController extends AppController
     public function beforeFilter(Event $event)
     {
         $this->Auth->allow(['register']);
+        if ($this->Auth->user('role') != 1) {
+            // echo 1;die;
+            $this->Auth->logout();
+            $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+          }
     }
     public function index(){
     }

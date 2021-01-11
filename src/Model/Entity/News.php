@@ -12,7 +12,6 @@ use Cake\ORM\Entity;
  * @property int $newstype_id
  * @property string|null $description
  * @property int $tag_id
- * @property int|null $comment_id
  * @property string|null $cover_image
  * @property string $status
  * @property int|null $hot
@@ -20,9 +19,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Author $author
- * @property \App\Model\Entity\Newstype $newstype
+ * @property \App\Model\Entity\NewsType $newstype
  * @property \App\Model\Entity\Tag $tag
- * @property \App\Model\Entity\Comment $comment
  */
 class News extends Entity
 {
@@ -41,7 +39,6 @@ class News extends Entity
         'newstype_id' => true,
         'description' => true,
         'tag_id' => true,
-        'comment_id' => true,
         'cover_image' => true,
         'status' => true,
         'hot' => true,
@@ -50,6 +47,5 @@ class News extends Entity
         'author' => true,
         'newstype' => true,
         'tag' => true,
-        'comment' => true,
     ];
 }

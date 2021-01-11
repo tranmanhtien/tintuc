@@ -10,11 +10,12 @@ use Cake\ORM\Entity;
  * @property int $new_id
  * @property int $user_id
  * @property string|null $content
+ * @property string|null $email
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\News $news
- * @property \App\Model\Entity\User[] $users
+ * @property \App\Model\Entity\User $user
  */
 class Comment extends Entity
 {
@@ -31,9 +32,10 @@ class Comment extends Entity
         'new_id' => true,
         'user_id' => true,
         'content' => true,
+        'email' => true,
         'created' => true,
         'modified' => true,
         'news' => true,
-        'users' => true,
+        'user' => true,
     ];
 }

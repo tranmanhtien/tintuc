@@ -118,6 +118,7 @@ Router::prefix('page', function (RouteBuilder $routes) {
     $routes->connect('/aboutus', ['controller' => 'Homes', 'action' => 'about']);
     $routes->connect('/contact', ['controller' => 'Homes', 'action' => 'contact']);
     $routes->connect('/search', ['controller' => 'Homes', 'action' => 'searchnew']);
+    $routes->connect('/new/comment', ['controller' => 'Homes', 'action' => 'comment']);
  
 
 

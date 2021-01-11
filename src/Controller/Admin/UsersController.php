@@ -13,11 +13,14 @@ class UsersController extends HomeAdminController
     public function initialize()
     {
         parent::initialize();
-
+        $this->loadComponent('Paginator');
     }
     public function index()
     {
-        $users = $this->Paginator->paginate($this->Users->find());
+        $this->paginate = [
+            'limit' => 5
+        ];
+        $users = $this->paginate($this->Users->find());
         $this->set('users',$users);
     }
     public function add()
@@ -52,7 +55,7 @@ class UsersController extends HomeAdminController
     {
         $user = $this->Users->get($id);
         if($this->Users->delete($user)){
-            $this->Flash->success(__('Thẻ nhãn có mã id: {0} đã bị xóa thành công .', h($id)));
+            $this->Flash->success(__('Tài khoản có mã id: {0} đã bị xóa thành công .', h($id)));
             return $this->redirect(['action' => 'index']);
             
         }else{
@@ -87,6 +90,7 @@ class UsersController extends HomeAdminController
     }
     public function logout()
     {
+        $this->Session->destroy();
         return $this->redirect($this->Auth->logout());
     }
 }

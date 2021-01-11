@@ -9,7 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \App\Model\Table\CommentsTable&\Cake\ORM\Association\BelongsTo $Comments
  * @property \App\Model\Table\CommentsTable&\Cake\ORM\Association\HasMany $Comments
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -41,9 +40,6 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Comments', [
-            'foreignKey' => 'comment_id',
-        ]);
         $this->hasMany('Comments', [
             'foreignKey' => 'user_id',
         ]);
@@ -77,13 +73,12 @@ class UsersTable extends Table
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
-        $validator
-            ->sameAs('re_pass','password','Mật khẩu không trùng'); 
+
         $validator
             ->integer('role')
             ->requirePresence('role', 'create')
             ->notEmptyString('role');
-       
+
         return $validator;
     }
 
@@ -97,18 +92,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['comment_id'], 'Comments'));
 
         return $rules;
     }
-    // public function validatePasswords($validator)
-    // {
-    //     $validator->add('password', 'no-misspelling', [
-    //         'rule' => ['compareWith', 're_pass'],
-    //         'message' => 'Mật khẩu không trùng',
-    //     ]);
-
-    //     // ...
-    //     return $validator;
-    // }
 }

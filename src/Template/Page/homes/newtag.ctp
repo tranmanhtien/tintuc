@@ -1,4 +1,7 @@
-<?php $breadcrum = 'Thẻ nhãn';?>
+<?php 
+    $this->set('Tittlepage', 'Thẻ nhãn');
+    $breadcrum = 'Thẻ nhãn';
+?>
 <?= $this->element('page/breadcrumb',['breadcrum' => $breadcrum]) ?>
 <!-- ##### Blog Content Area Start ##### -->
 <section class="blog-content-area section-padding-0-100">

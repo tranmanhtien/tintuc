@@ -16,7 +16,7 @@ class TagsController extends HomeAdminController
         parent::initialize();
     }
     public function index(){
-        $tags = $this->Paginator->paginate($this->Tags->find());
+        $tags = $this->paginate($this->Tags->find());
         $this->set('tags',$tags);
     }
     

@@ -1,3 +1,4 @@
+<?php $this->set('Tittlepage', 'Nikki'); ?>
 <?= $this->element('page/slider') ?>
 <section class="blog-content-area section-padding-100">
     <div class="container">
@@ -189,8 +190,9 @@
                         <!-- Tags -->
                         <ol class="popular-tags d-flex flex-wrap">
                             <?php foreach($tags as $tag){?>
-                                <li><a href="#"><?= $tag->name?></a></li>
+                                <li><a href="<?= $this->Url->build(['controller' => 'Homes','action' => 'newtag',$tag->id])?>"><?= $tag->name?></a></li>
                             <?php }?>
+                          
                         </ol>
                     </div>
 

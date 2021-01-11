@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\AuthorsTable&\Cake\ORM\Association\BelongsTo $Authors
  * @property \App\Model\Table\NewsTypeTable&\Cake\ORM\Association\BelongsTo $NewsType
  * @property \App\Model\Table\TagsTable&\Cake\ORM\Association\BelongsTo $Tags
- * @property \App\Model\Table\CommentsTable&\Cake\ORM\Association\BelongsTo $Comments
  *
  * @method \App\Model\Entity\News get($primaryKey, $options = [])
  * @method \App\Model\Entity\News newEntity($data = null, array $options = [])
@@ -54,9 +53,6 @@ class NewsTable extends Table
         $this->belongsTo('Tags', [
             'foreignKey' => 'tag_id',
             'joinType' => 'INNER',
-        ]);
-        $this->belongsTo('Comments', [
-            'foreignKey' => 'comment_id',
         ]);
     }
 
@@ -111,7 +107,6 @@ class NewsTable extends Table
         $rules->add($rules->existsIn(['author_id'], 'Authors'));
         $rules->add($rules->existsIn(['newstype_id'], 'NewsType'));
         $rules->add($rules->existsIn(['tag_id'], 'Tags'));
-        $rules->add($rules->existsIn(['comment_id'], 'Comments'));
 
         return $rules;
     }

@@ -28,9 +28,6 @@ class CreateNews extends AbstractMigration
         $table->addColumn('tag_id','integer',[
             'default' => null,
             'null' => false]);
-        $table->addColumn('comment_id','integer',[
-            'default' => null,
-            'null' => true]);
         $table->addColumn('cover_image','string',[
             'default' => null,
             'null' => true]);

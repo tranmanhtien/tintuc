@@ -34,7 +34,7 @@
                   'XÓA',
                   ['action' => 'delete', $row->id],
                   [
-                    'confirm' => 'Bạn có chắc chắn muốn xóa thẻ nhãn: '.$row->name,
+                    'confirm' => 'Bạn có chắc chắn muốn xóa tài khoản: '.$row->name,
                     'class' => 'btn btn-danger mr-2'
                   ]
                 )

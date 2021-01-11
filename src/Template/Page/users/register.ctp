@@ -1,6 +1,6 @@
 <?php
     $this->layout = 'auth';
-    $this->assign('tittle', 'Đăng kí tài khoản'); 
+    $this->set('Tittlepage', 'Đăng ký tài khoản'); 
 ?>
 <!-- Sign up form -->
 <section class="signup">

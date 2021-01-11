@@ -27,7 +27,6 @@ class NewsTableTest extends TestCase
         'app.Authors',
         'app.Newstypes',
         'app.Tags',
-        'app.Comments',
     ];
 
     /**

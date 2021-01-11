@@ -23,7 +23,7 @@ class NewsTypeController extends HomeAdminController
         $this->loadModel('Categories');
     }
     public function index(){
-        $newstype = $this->Paginator->paginate($this->NewsType->find()->contain(['Categories']));
+        $newstype = $this->paginate($this->NewsType->find()->contain(['Categories']));
         $this->set('newstype',$newstype);
     }
     public function add(){

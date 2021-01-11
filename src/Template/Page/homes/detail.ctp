@@ -1,5 +1,8 @@
 
-<?php $breadcrum = 'Bài viết';?>
+<?php 
+    $this->set('Tittlepage', 'Chi tiết tin');
+    $breadcrum = 'Bài viết';
+?>
 <?= $this->element('page/breadcrumb',['breadcrum' => $breadcrum]) ?>
 <!-- ##### Blog Content Area Start ##### -->
 <section class="blog-content-area section-padding-0-100">
@@ -63,12 +66,12 @@
                                             <div class="single-blog-post mb-50">
                                                 <!-- Thumbnail -->
                                                 <div class="post-thumbnail">
-                                                    <a href="#"><img style="width:150px;height:100px" src="/<?= $row->cover_image?>" alt=""></a>
+                                                    <a href="<?= $this->Url->build(['controller'=> 'Homes', 'action' =>'detail',$row->id])?>"><img style="width:150px;height:100px" src="/<?= $row->cover_image?>" alt=""></a>
                                                 </div>
                                                 <!-- Content -->
                                                 <div class="post-content">
                                                     <p class="post-date"><?= $row->created?> / <?= $row->tag['name']?></p>
-                                                    <a href="#" class="post-title">
+                                                    <a href="<?= $this->Url->build(['controller'=> 'Homes', 'action' =>'detail',$row->id])?>" class="post-title">
                                                         <h4><?= $row->tittle?></h4>
                                                     </a>
                                                     <p class="post-excerpt">
@@ -93,90 +96,87 @@
 
                             <!-- Comment Area Start -->
                             <div class="comment_area clearfix">
-                                <h4 class="headline">12 Comments</h4>                                   
+                                <h4 class="headline"><?php echo (count($comment)>0)?count($comment):'0'?> Bình luận</h4>                                   
                                 <ol>
-                                    <!-- Single Comment Area -->
-                                    <li class="single_comment_area">
-                                        <div class="comment-wrapper d-flex">
-                                            <!-- Comment Meta -->
-                                            <div class="comment-author">
-                                                <img src="img/blog-img/9.jpg" alt="">
-                                            </div>
-                                            <!-- Comment Content -->
-                                            <div class="comment-content">
-                                                <span class="comment-date">MAY 10, 2018</span>
-                                                <h5>Calantha Flower</h5>
-                                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>
-                                                <a href="#">Like</a>
-                                                <a class="active" href="#">Reply</a>
-                                            </div>
-                                        </div>
-                                        <ol class="children">
-                                            <li class="single_comment_area">
-                                                <div class="comment-wrapper d-flex">
-                                                    <!-- Comment Meta -->
-                                                    <div class="comment-author">
-                                                        <img src="img/blog-img/10.jpg" alt="">
-                                                    </div>
-                                                    <!-- Comment Content -->
-                                                    <div class="comment-content">
-                                                        <span class="comment-date">MAY 18, 2018</span>
-                                                        <h5>Dianna Agron</h5>
-                                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>
-                                                        <a href="#">Like</a>
-                                                        <a class="active" href="#">Reply</a>
-                                                    </div>
+                                    <?php foreach($comment as $cm){?>
+                                        <li class="single_comment_area">
+                                            <div class="comment-wrapper d-flex">
+                                                <div class="comment-author">
+                                                    <img src="/img/img/user.png" alt="">
                                                 </div>
-                                            </li>
-                                        </ol>
-                                    </li>
-                                    <li class="single_comment_area">
-                                        <div class="comment-wrapper d-flex">
-                                            <!-- Comment Meta -->
-                                            <div class="comment-author">
-                                                <img src="img/blog-img/11.jpg" alt="">
+                                                <div class="comment-content">
+                                                    <span class="comment-date"><?= $cm->created?></span>
+                                                    <h5><?= $cm['user']['name']?></h5>
+                                                    <p><?= $cm->content?></p>
+                                                </div>
                                             </div>
-                                            <!-- Comment Content -->
-                                            <div class="comment-content">
-                                                <span class="comment-date">MAY 24, 2018</span>
-                                                <h5>Chris Hemsworth</h5>
-                                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>
-                                                <a href="#">Like</a>
-                                                <a class="active" href="#">Reply</a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    <?php }?>
                                 </ol>
                             </div>
 
                             <!-- Leave A Comment -->
                             <div class="leave-comment-area clearfix">
                                 <div class="comment-form">
-                                    <h4 class="headline">Leave A Comment</h4>
-
+                                    <h4 class="headline">Thông tin bình luận</h4>
+                                    <?= $this->flash->render()?>
                                     <!-- Comment Form -->
-                                    <form action="#" method="post">
+                                    <?php if(!$acc_user): ?>
+                                    <?php echo $this->Form->create(NULL,array('url'=>'page/new/comment','type' => 'post'));?>
                                         <div class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="contact-name" placeholder="Name">
+                                                    <input type="text"  name='Name' class="form-control" id="contact-name" placeholder="Tên">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" id="contact-email" placeholder="Email">
+                                                    <input type="email"  name='Email' class="form-control" id="contact-email" placeholder="Email">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Comment"></textarea>
+                                                    <textarea class="form-control" name="content" id="message" cols="30" rows="10" placeholder="Lời bình"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn nikki-btn">Send Message</button>
+                                                <button type="submit" class="btn nikki-btn" disabled >Gửi </button>
                                             </div>
                                         </div>
-                                    </form>
+                                    <?php echo $this->Form->end();?>
+                                    <?php else :?>
+                                        <?php echo $this->Form->create(NULL,array('url'=>'page/new/comment','type' => 'post'));?>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" value="<?= $acc_user['name']?>" name='Name' class="form-control" id="contact-name" placeholder="Tên" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="email" value="<?= $acc_user['email']?>" name='Email' class="form-control" id="contact-email" placeholder="Email" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 d-none" >
+                                                    <div class="form-group">
+                                                        <input  type="text"  name="user_id" value="<?= $acc_user['id']?>">
+                                                        <input  type="text"  name="new_id" value="<?= $new['id']?>">
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="content" id="message" cols="30" rows="10" placeholder="Lời bình"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn nikki-btn"
+                                                    <?php echo (!$acc_user)?'disabled':''; ?>
+                                                    >Gửi </button>
+                                                </div>
+                                            </div>
+                                        <?php echo $this->Form->end();?>
+                                    <?php endif;?>
                                 </div>
                             </div>
                         </div>

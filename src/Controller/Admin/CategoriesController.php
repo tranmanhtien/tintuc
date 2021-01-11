@@ -19,7 +19,7 @@ class CategoriesController extends HomeAdminController
     }
     public function index()
     {
-        $categories =  $this->Paginator->paginate($this->Categories->find());
+        $categories =  $this->paginate($this->Categories->find());
         $this->set('categories',$categories);
     }
     public function add(){

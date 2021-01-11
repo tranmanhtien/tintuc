@@ -25,7 +25,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Nikki - Blog &amp; Magazine Template</title>
+    <title>
+        <?= $Tittlepage ?>
+    </title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/img/core-img/favicon.ico">

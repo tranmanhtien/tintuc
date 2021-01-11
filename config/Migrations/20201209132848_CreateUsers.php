@@ -25,10 +25,6 @@ class CreateUsers extends AbstractMigration
             'default' => null,
             'null' => false
         ]);
-        $table->addColumn('comment_id','integer',[
-            'default' => null,
-            'null' => true
-        ]);
         $table->addColumn('role','integer',[
             'default' => null,
             'null' => false

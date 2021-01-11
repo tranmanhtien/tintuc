@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\NewsTable&\Cake\ORM\Association\BelongsTo $News
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  *
  * @method \App\Model\Entity\Comment get($primaryKey, $options = [])
  * @method \App\Model\Entity\Comment newEntity($data = null, array $options = [])
@@ -50,9 +49,6 @@ class CommentsTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Users', [
-            'foreignKey' => 'comment_id',
-        ]);
     }
 
     /**
@@ -71,6 +67,10 @@ class CommentsTable extends Table
             ->scalar('content')
             ->allowEmptyString('content');
 
+        $validator
+            ->email('email')
+            ->allowEmptyString('email');
+
         return $validator;
     }
 
@@ -83,6 +83,7 @@ class CommentsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['new_id'], 'News'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 

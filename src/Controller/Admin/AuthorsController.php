@@ -24,7 +24,7 @@ class AuthorsController extends HomeAdminController
     }
     public function index(){
         
-        $authors = $this->Paginator->paginate($this->Authors->find());
+        $authors = $this->paginate($this->Authors->find());
         $this->set('authors',$authors);
         
     }

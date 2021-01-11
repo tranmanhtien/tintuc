@@ -25,6 +25,10 @@ class CreateComments extends AbstractMigration
             'default' => null,
             'null' => true
         ]);
+        $table->addColumn('email','text',[
+            'default' => null,
+            'null' => true
+        ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
             'null' => false,

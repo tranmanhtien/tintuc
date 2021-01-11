@@ -16,21 +16,21 @@ class HomesController extends AppController
         parent::initialize();
         $this->loadComponent('Auth',
         ['authenticate'=>[
-            'Form'=>[
-                'fields' => [
-                        'username' => 'email',
-                        'password' => 'password'
-                    ]
-                ]
-                ],
-            'loginAction' => [
+                            'Form'=>[
+                                        'fields' => [
+                                                    'username' => 'email',
+                                                    'password' => 'password'
+                                                ]
+                                    ]
+                                ],
+                'loginAction' => [
                     'controller' => 'Users',
                     'action' => 'login'
                 ],
                 'loginRedirect' => [
                     'controller' => 'Homes',
                     'action' => 'index'
-            ]
+                ]
             ]
         );
         $this->set('acc_user', $this->Auth->user());
@@ -39,6 +39,7 @@ class HomesController extends AppController
         $this->loadModel('NewsType');
         $this->loadModel('Tags');
         $this->loadModel('News');
+        $this->loadModel('Comments');
         $this->loadComponent('Paginator');
        
         // take data show to menu
@@ -66,7 +67,7 @@ class HomesController extends AppController
     ];
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['index','register']);
+        $this->Auth->allow(['index','register','detail','newType','newTag','newCategory','About','Contact','searchNew','comment']);
     }
     public function index(){
         $arrSlide = [];
@@ -78,11 +79,14 @@ class HomesController extends AppController
     }
     public function detail($id){
         $new = $this->News->get($id,[
-            'contain' => array('Authors', 'Tags' , 'NewsType' => ['Categories'])
+            'contain' => array('Authors', 'Tags', 'NewsType' => ['Categories'])
         ]);
+        $comment = $this->Comments->find()->Contain(['Users','News'])->Where(['Comments.new_id' => $id])->toArray(); 
+       
         // take two news with tag
         $twonews = $this->News->find()->contain(['Authors', 'Tags' , 'NewsType' => ['Categories']])->where(['News.tag_id' => $new->tag_id,'News.id !=' => $id])->order(['News.created' => 'DESC'])->limit(2);
         $this->set('new',$new);
+        $this->set('comment',$comment);
         $this->set('twonews',$twonews);
     }
     //search news by newtype
@@ -142,5 +146,18 @@ class HomesController extends AppController
         $this->set('data',$data);
         $this->set('keysearch',$keysearch);
 
+    }
+    public function comment(){
+        $comment = $this->Comments->newEntity();
+        if ($this->request->is('post')) {
+            // Prior to 3.4.0 $this->request->data() was used.
+            $comment = $this->Comments->patchEntity($comment, $this->request->getData());
+            if ($this->Comments->save($comment)) {
+                $this->Flash->success(__('Bình luận đã được gửi'));
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('Không thể gửi.'));
+        }
+        $this->set('comment',$comment);
     }
 }
