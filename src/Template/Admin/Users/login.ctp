@@ -1,4 +1,5 @@
 <?php
+    $this->set('Tittlepage', 'Đăng nhập admin');
     $this->layout = 'auth';
 ?>
 <!-- Sing in  Form -->
